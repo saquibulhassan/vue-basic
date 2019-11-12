@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <h4>Employees</h4>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Rank</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(employee, index) in employees">
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.title }}</td>
+            <td><input type="text" v-model="employee.rank"> {{ employee.rank }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button v-on:click="calculateRank()">Calculate Rank</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            employees : [
+                {name: 'Shere Ali', title: 'Project Manager'},
+                {name: 'Ridoy', title: 'Team Leader'},
+                {name: 'Saquibul Hasan', title: 'Sr. Software Developer'},
+                {name: 'Abdul Aziz', title: 'Sr. Software Developer'},
+            ]
+        },
+        methods: {
+            calculateRank: function () {
+                for (var prop in this.employees) {
+                    if ( this.employees.hasOwnProperty(prop) ) {
+                        this.employees[prop].rank = Math.floor(Math.random() * 10);
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

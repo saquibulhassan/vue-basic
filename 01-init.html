@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p>Movie Name : {{ movieTitle }}</p>
+    <p>Release Year : {{ releaseYear }}</p>
+
+    <p>The movie is {{ isMovieOld(releaseYear) ? 'new' : 'old' }} </p>
+
+    <p v-bind:title="movieTitle">Hover your mouse here!</p>
+
+    <button v-on:click="buttonClicked('Hello World!', $event)">Click Me!</button>
+
+    <p>Directive event modifier</p>
+    <div v-on:click="showAlert">
+        <button v-on:click.stop="showAlert">Click Me!</button>
+    </div>
+
+    <p>Button can clicked once</p>
+    <button v-on:click.once="showAlert">Click Me!</button>
+
+    <p>Default behavior disabled</p>
+    <a href="https://google.com" v-on:click.prevent>Google.com will not open</a>
+
+    <p>Key modifier</p>
+    <input type="text" v-on:keyup.enter.space="showAlertForKeyModifier">
+
+    <p>Modifier key / Shortcut (Only works with key. Ex- Enter, Shift, Ctrl, Alt)</p>
+    <input type="text" v-on:keyup.shift.enter="showAlertForShortcut">
+    <button v-on:click.shift="showAlertForShiftClick">Click Me!</button>
+
+    <h3>Exercise 1</h3>
+    <input type="text" v-on:keyup="updateDataProperty">
+    Output : {{ movieDirector }}
+
+    <h3>Exercise 2</h3>
+    <input type="text" v-on:keyup.ctrl.enter="updateDataProperty">
+    Output : {{ movieDirector }}
+
+    <h3>Exercise 3</h3>
+    <form action="" method="get" v-on:submit.prevent>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            movieTitle : 'Sahoo',
+            releaseYear : 1990,
+            movieDirector : '',
+        },
+        methods: {
+            isMovieOld : function (releaseYear) {
+                return releaseYear > 2000;
+            },
+            buttonClicked: function (message, event) {
+                console.log(event);
+                alert(message);
+            },
+            showAlert: function () {
+                alert('Propagation stopeed');
+            },
+            showAlertForKeyModifier: function () {
+                alert('You pressed enter or space');
+            },
+            showAlertForShortcut: function () {
+                alert('You pressed shift + enter');
+            },
+            showAlertForShiftClick: function () {
+                alert('You clicked with shift');
+            },
+            updateDataProperty : function (event) {
+                this.movieDirector = event.target.value;
+            }
+        }
+    })
+</script>
+</body>
+</html>

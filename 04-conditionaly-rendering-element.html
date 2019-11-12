@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <input type="text" v-model="stock">
+
+    <p v-if="stock >= 50">We have enough stock</p>
+    <p v-else-if="stock >= 15">Limited stock. Hurry UP!</p>
+    <p v-else-if="stock >= 1">Only {{ stock }} Pcs left. Order NOW!</p>
+
+    <template v-else>
+        <p>Pre Book Now</p>
+        <p>Order now & get 5% discount on product price</p>
+    </template>
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            stock : 100,
+        },
+    })
+</script>
+
+</body>
+</html>

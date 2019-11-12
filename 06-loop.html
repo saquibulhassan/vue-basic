@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <h4>Movies</h4>
+    <ul>
+        <li v-for="title in movies">{{ title }}</li>
+    </ul>
+
+    <h4>Employees</h4>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Index</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(employee, index) in employees">
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.title }}</td>
+            <td>{{ companyName }}</td>
+            <td>{{ index }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h4>Individual Person</h4>
+    <ul>
+        <li v-for="(value, propertyName, index) in person">{{ propertyName }} ({{ index }}) : {{ value }}</li>
+    </ul>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            movies : ['The matrix', 'Terminator', 'Transformers', 'Harry Potter'],
+            employees : [
+                {name: 'Shere Ali', title: 'Project Manager'},
+                {name: 'Ridoy', title: 'Team Leader'},
+                {name: 'Saquibul Hasan', title: 'Sr. Software Developer'},
+                {name: 'Abdul Aziz', title: 'Sr. Software Developer'},
+            ],
+            companyName: 'Feemaa Tech Ltd',
+            person : {
+                name : 'Abid Mehedy',
+                title : 'Administrative Officer',
+                address : 'Mirpur, Dhaka',
+                email : 'abid@gmail.com',
+            }
+        },
+    });
+
+</script>
+
+</body>
+</html>

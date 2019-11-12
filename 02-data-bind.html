@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <label>Name</label>
+    <input type="text" v-model="name">
+    <p>Output : {{ name }}</p>
+
+    <label>Age</label>
+    <input type="text" v-model.number="age">
+    <p>Output : {{ age }}</p>
+
+    <label>Email</label>
+    <input type="text" v-model.lazy="email">
+    <p>Output : {{ email }}</p>
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            name : '',
+            age : '',
+            email : '',
+        },
+    })
+</script>
+
+</body>
+</html>
