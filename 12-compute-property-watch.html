@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <h4>Compute Property & Watch</h4>
+
+    <ol>
+        <li v-for="(movie, index) in formattedMovies">{{ movie }}</li>
+    </ol>
+
+    <button v-on:click="addMovie">Add New Movie</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            movies: [
+                {name: 'The Matrix', year: 1999},
+                {name: 'The Matrix Reloaded', year: 2003},
+                {name: 'The Matrix Revolutions', year: 2005},
+            ]
+        },
+        methods: {
+            addMovie() {
+                this.movies.push({name: 'The Matrix Extended', year: 2007});
+            }
+        },
+        computed: {
+            formattedMovies() {
+              return this.movies.map((movie)=>{
+                  return movie.name + ' released on ' + movie.year
+              });
+            }
+        },
+        watch: {
+            movies(query) {
+                var movie = query[query.length - 1];
+                console.log(movie.name + ' released on ' + movie.year);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

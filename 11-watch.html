@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <h4>Watch</h4>
+
+    <label>Search Keyword</label>
+    <input type="text" v-model="keyword">
+
+    <h4>Results</h4>
+
+    <p v-if="isSearching">Searching . . .</p>
+    <ul v-else>
+        <li v-for="title in results">{{ title }}</li>
+    </ul>
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isSearching: false,
+            keyword : '',
+            results: []
+        },
+        watch: {
+            keyword() {
+                this.isSearching = true;
+                var vm = this;
+                setTimeout(function () {
+                    vm.results = ['JavaScript', 'PHP', 'MySQL'];
+                    vm.isSearching = false;
+                }, 500);
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

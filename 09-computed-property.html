@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <h4>Computed Property</h4>
+    <p>Counter : {{ counter }}</p>
+    <!--<p>Full Name : {{ getFullName() }}</p>-->
+
+    <p>Full Name : {{ fullName }}</p>
+    <p>Full Name : {{ fullName }}</p>
+
+    <button v-on:click="updateCounter()">Update Counter</button>
+    <button v-on:click="updateName()">Update Name</button>
+
+    <p><i>Comments section in code are issue.</i></p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            counter : 1,
+            firstName : 'Jhon',
+            lastName : 'Doe',
+        },
+        methods: {
+            /*getFullName() {
+                alert('Full name assembling...');
+                retur n this.firstName + ' ' + this.lastName;
+            },*/
+            updateCounter() {
+                this.counter++;
+            },
+            updateName(){
+                this.firstName = 'Steb';
+                this.lastName = 'Jobs';
+            }
+        },
+        computed: {
+            fullName() {
+                alert('Full name assembling...');
+                return this.firstName + ' ' + this.lastName;
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

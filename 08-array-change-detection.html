@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <h4>Movies</h4>
+    <ul>
+        <li v-for="title in movies">{{ title }}</li>
+    </ul>
+
+    <button v-on:click="updateMoviesArray()">Update movie array</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            movies : ['The matrix', 'Terminator', 'Transformers', 'Harry Potter'],
+        },
+        methods: {
+            updateMoviesArray(){
+                //this.movies[2] = 'This is changed data'; // does not work properly
+                Vue.set(this.movies, 2, 'This is changed data'); // this work properly
+                console.log(this.movies[2]);
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

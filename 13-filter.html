@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <h4>Filter</h4>
+
+    <p>{{ message | uppercase }}</p>
+
+    <p>{{ message | uppercase(true) }}</p>
+
+    <p>{{ message | uwfirst }}</p>
+
+    <p>{{ message | uwfirst | removeSpace }}</p>
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'hello world!',
+        },
+        filters: {
+            uppercase(value, onlyFirstChar) {
+                if(!value) return '';
+                value = value.toString();
+
+                if(onlyFirstChar) {
+                    return value[0].toUpperCase() + value.slice(1);
+                } else {
+                    return value.toUpperCase();
+                }
+            },
+            uwfirst(value) {
+                if(!value) return '';
+                valueParts = value.toString().split(' ');
+
+                valueParts = valueParts.map(function (v) {
+                    return v.charAt(0).toUpperCase() + v.slice(1);
+                });
+
+                return valueParts.join(' ');
+            },
+            removeSpace(value) {
+                if(!value) return '';
+                return value.toString().replace(/ /g, '');
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

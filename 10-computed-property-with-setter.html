@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <h4>Computed Property</h4>
+    <p>Counter : {{ counter }}</p>
+
+    <p>Full Name : {{ fullName }}</p>
+    <p>Full Name : {{ fullName }}</p>
+
+    <button v-on:click="updateCounter()">Update Counter</button>
+    <button v-on:click="updateName()">Update Name</button>
+    <button v-on:click="updateFullNameSetter()">Update Full Name Setter</button>
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            counter : 1,
+            firstName : 'Jhon',
+            lastName : 'Doe',
+        },
+        methods: {
+            updateCounter() {
+                this.counter++;
+            },
+            updateName(){
+                this.firstName = 'Steb';
+                this.lastName = 'Jobs';
+            },
+            updateFullNameSetter(){
+                this.fullName = 'Steb Jobs';
+            }
+        },
+        computed: {
+            fullName: {
+                get() {
+                    alert('Full name assembling...');
+                    return this.firstName + ' ' + this.lastName;
+                },
+                set (newValue) {
+                    var parts = newValue.split(' ');
+                    this.firstName = parts[0];
+                    this.lastName = parts[parts.length - 1];
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

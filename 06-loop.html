@@ -39,6 +39,12 @@
     <ul>
         <li v-for="(value, propertyName, index) in person">{{ propertyName }} ({{ index }}) : {{ value }}</li>
     </ul>
+
+    <h4>Number loop</h4>
+    <ul>
+        <li>Index : Value</li>
+        <li v-for="(n, index) in 10">{{ index + ' : ' + n }}</li>
+    </ul>
 </div>
 
 <script>
