@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p v-bind:title="movieTitle">Hover your mouse here!</p>
+    <p :title="movieTitle">Hover your mouse here!</p>
+
+    <button v-on:click="buttonClicked('Hello World!')">Click Me!</button>
+    <button @click="buttonClicked('Hello World!')">Click Me!</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            movieTitle : 'The Matrix',
+        },
+        methods: {
+            buttonClicked: function (message, event) {
+                console.log(event);
+                alert(message);
+            }
+        }
+    })
+</script>
+</body>
+</html>
