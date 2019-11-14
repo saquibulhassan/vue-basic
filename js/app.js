@@ -1,6 +1,10 @@
 new Vue({
     el: '#app',
     data: {
+        showCart: false,
+        cart: {
+            items: [],
+        },
         products: [
             {
                 id: 1,
@@ -45,6 +49,82 @@ new Vue({
                 inStock: 81
             }
         ]
+    },
+    methods: {
+        addProductToCart(product) {
+
+            if (product.inStock === 0) {
+                this.insufficientStock(product);
+                return false;
+            }
+
+            var cartItem = this.getCartProduct(product);
+
+            if (cartItem !== null) {
+                    cartItem.quantity++;
+                    cartItem.product.inStock--;
+            } else {
+                    this.cart.items.push({
+                        product: product,
+                        quantity: 1
+                    });
+                    product.inStock--;
+
+            }
+        },
+        getCartProduct(product) {
+            for (i = 0; i < this.cart.items.length; i++) {
+                if (this.cart.items[i].product.id === product.id) {
+                    return this.cart.items[i];
+                }
+            }
+
+            return null;
+        },
+        increaseProductQuantity(cartItem) {
+            if (cartItem.product.inStock === 0) {
+                this.insufficientStock(cartItem.product);
+                return false;
+            }
+
+            cartItem.quantity++;
+            cartItem.product.inStock--;
+        },
+        decreaseProductQuantity(cartItem) {
+            cartItem.quantity--;
+            cartItem.product.inStock++;
+
+            if (cartItem.quantity === 0) {
+                this.removeCartItem(cartItem);
+            }
+        },
+        removeCartItem(cartItem) {
+            var index = this.cart.items.indexOf(cartItem);
+            if (index !== -1) {
+                this.cart.items.splice(index, 1);
+            }
+        },
+        insufficientStock(product) {
+            alert(product.name + ' does not have sufficient stock');
+        },
+        checkout(){
+            alert('Your order is placed successfully.');
+            this.cart.items = [];
+            this.showCart = false;
+        }
+    },
+    computed: {
+        cartTotal() {
+            var total = 0;
+            this.cart.items.forEach(function (item) {
+                total += item.product.price * item.quantity;
+            });
+
+            return total;
+        },
+        taxAmount() {
+            return ((this.cartTotal * 10) / 100);
+        }
     },
     filters: {
         currency(value) {
