@@ -1,6 +1,13 @@
-# first-project
+# How to use vue cli
 
 > A Vue.js project
+
+## Install vue cli
+```bash
+sudo npm install -g vue-cli
+
+vue init webpack-simple <project-name>
+```
 
 ## Build Setup
 
