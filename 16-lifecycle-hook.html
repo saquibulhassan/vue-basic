@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p v-bind:title="movieTitle">Hover your mouse here!</p>
+    <p :title="movieTitle">Hover your mouse here!</p>
+
+    <button v-on:click="buttonClicked('Hello World!')">Click Me!</button>
+    <button @click="buttonClicked('Hello World!')">Click Me!</button>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            movieTitle : 'The Matrix',
+        },
+        methods: {
+          buttonClicked(msg){
+              this.movieTitle = msg;
+          }
+        },
+        beforeCreate() {
+            console.log('Before created hook invoked');
+        },
+        created() {
+            console.log('Created hook invoked');
+        },
+        beforeMount() {
+            console.log('Before mounted hook invoked');
+        },
+        mounted() {
+            console.log('Mounted hook invoked');
+        },
+        beforeUpdate() {
+            console.log('Before update hook invoked');
+        },
+        updated() {
+            console.log('Updated hook invoked');
+        },
+        beforeDestroy() {
+            console.log('Before destroy hook invoked');
+        },
+        destroyed() {
+            console.log('Destroyed hook invoked');
+        },
+    });
+
+
+    setTimeout(function () {
+        vm.$destroy();
+    }, 2000)
+</script>
+</body>
+</html>
