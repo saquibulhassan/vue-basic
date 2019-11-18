@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app1">
+    <contact-us></contact-us>
+
+    <contact-us></contact-us>
+</div>
+
+
+<script>
+    /**
+     * Global Component
+     * Using Vue.component construction function we can define global component.
+     *
+     * Local Component
+     * To define local component we have to pass an object with components property
+     * Example :
+     * new Vue({
+     *      el: '#app1',
+     *      components: {
+     *          'contact-us': {
+     *               data(){
+     *                   return {
+     *                       email : 'jhon@example.com'
+     *                   }
+     *               },
+     *               template: `
+     *                   <div>
+     *                       <h3>Contact Us</h3>
+     *                       <p>Please send us an e-mail to : {{ email }}</p>
+     *                   </div>
+     *               `
+     *           }
+     *      }
+     * });
+     *
+     */
+    Vue.component('contact-us', {
+        data(){
+            return {
+                email : 'jhon@example.com'
+            }
+        },
+        template: `
+            <div>
+                <h3>Contact Us</h3>
+                <p>Please send us an e-mail to : {{ email }}</p>
+            </div>
+        `
+    })
+
+    new Vue({
+        el: '#app1',
+    });
+</script>
+</body>
+</html>
