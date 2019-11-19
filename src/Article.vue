@@ -8,7 +8,7 @@
 
     <app-author :author="author"></app-author>
 
-    <app-social @articleHasShared="shared($event)"></app-social>
+    <app-social :article="$data" @articleHasShared="shared($event)"></app-social>
   </div>
 </template>
 
