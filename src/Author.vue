@@ -1,16 +1,23 @@
 <template>
-    <p>Written by: {{ author.firstName }} {{ author.lastName }} </p>
+  <p>Written by: {{ author.firstName }} {{ author.lastName }} </p>
 </template>
 
 
 <script>
-  export default {
-      props: {
-          author: {
-              type: Object,
-              required: true,
-          }
-      }
-  }
+    import {eventBus} from './main'
+
+    export default {
+        props: {
+            author: {
+                type: Object,
+                required: true,
+            }
+        },
+        created() {
+            eventBus.$on('articleHasShared', function (data) {
+                console.log('Dear ' + author.firstName + ' ' + author.lastName + ' ')
+            })
+        }
+    }
 </script>
 

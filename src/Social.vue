@@ -4,12 +4,17 @@
 
 
 <script>
+  import {eventBus} from './main'
+
   export default {
       methods: {
           share(){
-              this.$emit('articleHasShared', {
+              var data = {
                   media: 'Facebook'
-              })
+              };
+
+              eventBus.$emit('articleHasShared', data)
+              this.$emit('articleHasShared', data)
           }
       }
   }
