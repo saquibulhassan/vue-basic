@@ -15,7 +15,10 @@
           </li>
         </ul>
 
-        <component :is="activeView"></component>
+        <keep-alive>
+          <component :is="activeView"></component>
+        </keep-alive>
+
 
       </div>
     </div>

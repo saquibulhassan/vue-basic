@@ -8,6 +8,8 @@
 
 <script>
     export default {
-
+        destroyed() {
+            console.log('Contact : Component destroyed')
+        }
     }
 </script>

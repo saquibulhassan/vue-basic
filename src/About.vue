@@ -8,6 +8,8 @@
 
 <script>
     export default {
-
+        destroyed() {
+            console.log('About : Component destroyed')
+        }
     }
 </script>
