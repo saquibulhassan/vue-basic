@@ -3,13 +3,19 @@
     <div class="row">
       <div class="col-md-12">
 
-        <announcement></announcement>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" @click.prevent="activeView = 'app-home'">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" @click.prevent="activeView = 'app-about'">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" @click.prevent="activeView = 'app-contact'">Contact</a>
+          </li>
+        </ul>
 
-        <app-article>
-          <p>This is default slot</p>
-          <p slot="top">This is top slot</p>
-          <p slot="bottom">This is bottom slot</p>
-        </app-article>
+        <component :is="activeView"></component>
 
       </div>
     </div>
@@ -17,5 +23,11 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+        data() {
+            return {
+                activeView: 'app-home'
+            }
+        }
+    }
 </script>
