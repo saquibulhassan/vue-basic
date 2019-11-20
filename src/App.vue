@@ -5,7 +5,11 @@
 
         <announcement></announcement>
 
-        <app-article></app-article>
+        <app-article>
+          <p>This is default slot</p>
+          <p slot="top">This is top slot</p>
+          <p slot="bottom">This is bottom slot</p>
+        </app-article>
 
       </div>
     </div>
@@ -13,7 +17,5 @@
 </template>
 
 <script>
-export default {
-
-}
+    export default {}
 </script>

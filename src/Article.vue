@@ -9,6 +9,13 @@
     <app-author :author="author"></app-author>
 
     <app-social :article="$data" @articleHasShared="shared($event)"></app-social>
+
+    <slot>
+      <p>This is default slot</p>
+    </slot>
+
+    <slot name="top"></slot>
+    <slot name="bottom"></slot>
   </div>
 </template>
 
