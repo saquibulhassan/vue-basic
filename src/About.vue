@@ -10,6 +10,12 @@
     export default {
         destroyed() {
             console.log('About : Component destroyed')
+        },
+        activated() {
+            console.log('About : component activated')
+        },
+        deactivated() {
+            console.log('About : component deactivated')
         }
     }
 </script>

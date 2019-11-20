@@ -10,6 +10,12 @@
     export default {
         destroyed() {
             console.log('Contact : Component destroyed')
+        },
+        activated() {
+            console.log('Contact : component activated')
+        },
+        deactivated() {
+            console.log('Contact : component deactivated')
         }
     }
 </script>
