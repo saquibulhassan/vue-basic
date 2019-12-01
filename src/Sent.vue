@@ -1,7 +1,26 @@
 <template>
-  <h1>Sent</h1>
+  <app-messages :messages="sentMessages"></app-messages>
 </template>
 
 <script>
-export default {}
+    import Messages from "./Messages";
+
+    export default {
+        props: {
+            data: {
+                type: Object,
+                required: true
+            }
+        },
+        computed: {
+            sentMessages(){
+                return this.data.messages.filter((message) => {
+                    return message.type === 'outgoing' && !message.isDeleted
+                })
+            }
+        },
+        components: {
+            appMessages: Messages
+        },
+    }
 </script>

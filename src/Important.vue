@@ -1,7 +1,25 @@
 <template>
-  <h1>Important</h1>
+  <app-messages :messages="importantMessages"></app-messages>
 </template>
 
 <script>
-export default {}
+  import Messages from "./Messages";
+export default {
+    props: {
+        data: {
+            type: Object,
+            required: true
+        }
+    },
+    computed: {
+        importantMessages() {
+            return this.data.messages.filter((message) => {
+                return message.type === 'incoming' && message.isImportant && !message.isDeleted
+            })
+        }
+    },
+    components: {
+        appMessages: Messages
+    }
+}
 </script>
