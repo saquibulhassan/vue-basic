@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from "vue-router";
-import Home from "./Component/Home";
-import SingleProduct from "./Component/SingleProduct";
-import ProductCatalog from "./Component/ProductCatalog";
+import Home from "./component/Home";
+import SingleProduct from "./component/SingleProduct";
+import ProductCatalog from "./component/ProductCatalog";
 
 Vue.use(VueRouter);
 
