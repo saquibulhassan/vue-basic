@@ -10,6 +10,18 @@
                 <p><strong>In stock:</strong> {{ product.inStock }}</p>
                 <p>{{ product.description }}</p>
             </div>
+
+            <h5>Related Product</h5>
+            <ul>
+                <router-link
+                    v-for="product in products"
+                    :key="product.id"
+                    :to="{ name: 'viewProduct', params: { productId: product.id } }"
+                    tag="li"
+                    class="group inner list-group-item-heading">
+                    <a>{{ product.name }}</a>
+                </router-link>
+            </ul>
         </div>
     </div>
 </template>
@@ -41,8 +53,9 @@
             getProduct: function(productId) {
                 let _this = this;
                 this.product = {}
+
                 this.products.forEach(function(product) {
-                    if (product.id === productId) {
+                    if (product.id == productId) {
                         _this.product = product
                     }
                 });
