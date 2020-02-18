@@ -10,33 +10,51 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <router-link tag="li" to="/" exact active-class="active">
-                        <a class="nav-link">Home</a>
-                    </router-link>
-                    <router-link tag="li" to="/profile" exact active-class="active">
-                        <a class="nav-link">Profile</a>
-                    </router-link>
-                    <router-link tag="li" to="/products" exact active-class="active">
-                        <a class="nav-link">Product Catalog</a>
-                    </router-link>
-                    <router-link tag="li" :to="{name: 'viewProduct', params: {productId: 1}}" exact active-class="active">
-                        <a class="nav-link">Single Product</a>
-                    </router-link>
-                    <router-link tag="li" to="/redirect" exact active-class="active">
-                        <a class="nav-link">Redirect to Home</a>
-                    </router-link>
-                    <router-link tag="li" :to="{name: 'page'}" exact active-class="active">
-                        <a class="nav-link">Page 1</a>
-                    </router-link>
-                    <router-link tag="li" :to="{name: 'page', params:{id: 123456}}" exact active-class="active">
-                        <a class="nav-link">Page 2</a>
-                    </router-link>
-                    <router-link tag="li" :to="{name: 'page', query:{name: 'Jhon Doe'}}" exact active-class="active">
-                        <a class="nav-link">Page 3</a>
-                    </router-link>
-                    <router-link tag="li" :to="{name: 'page', params:{id: 123456}, query:{age: 25, name: 'Jhon Doe'}}" exact active-class="active">
-                        <a class="nav-link">Page 4</a>
-                    </router-link>
+                    <template v-if="!auth.isLoggedIn">
+                        <router-link active-class="active" exact tag="li" to="/">
+                            <a class="nav-link">Home</a>
+                        </router-link>
+                        <router-link active-class="active" exact tag="li" to="/profile">
+                            <a class="nav-link">Profile</a>
+                        </router-link>
+                        <router-link active-class="active" exact tag="li" to="/products">
+                            <a class="nav-link">Product Catalog</a>
+                        </router-link>
+                        <router-link :to="{name: 'viewProduct', params: {productId: 1}}" active-class="active" exact
+                                     tag="li">
+                            <a class="nav-link">Single Product</a>
+                        </router-link>
+                        <router-link active-class="active" exact tag="li" to="/redirect">
+                            <a class="nav-link">Redirect to Home</a>
+                        </router-link>
+                        <router-link :to="{name: 'page'}" active-class="active" exact tag="li">
+                            <a class="nav-link">Page 1</a>
+                        </router-link>
+                        <router-link :to="{name: 'page', params:{id: 123456}}" active-class="active" exact tag="li">
+                            <a class="nav-link">Page 2</a>
+                        </router-link>
+                        <router-link :to="{name: 'page', query:{name: 'Jhon Doe'}}" active-class="active" exact
+                                     tag="li">
+                            <a class="nav-link">Page 3</a>
+                        </router-link>
+                        <router-link :to="{name: 'page', params:{id: 123456}, query:{age: 25, name: 'Jhon Doe'}}"
+                                     active-class="active" exact
+                                     tag="li">
+                            <a class="nav-link">Page 4</a>
+                        </router-link>
+
+                        <li v-if="!auth.isLoggedIn">
+                            <a @click="login" class="nav-link">Log In</a>
+                        </li>
+                    </template>
+                    <template v-if="auth.isLoggedIn">
+                        <router-link active-class="active" exact tag="li" to="/dashboard">
+                            <a class="nav-link">Dashboard</a>
+                        </router-link>
+                        <li>
+                            <a @click="logout" class="nav-link">Log Out</a>
+                        </li>
+                    </template>
                 </ul>
             </div>
         </nav>
@@ -47,5 +65,23 @@
 </template>
 
 <script>
-    export default {}
+    import auth from "./auth";
+
+    export default {
+        data() {
+            return {
+                auth: auth
+            }
+        },
+        methods: {
+            login() {
+                this.auth.isLoggedIn = true
+                this.$router.push('/dashboard');
+            },
+            logout() {
+                this.auth.isLoggedIn = false
+                this.$router.push('/');
+            }
+        }
+    }
 </script>
